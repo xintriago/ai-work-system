@@ -37,8 +37,21 @@ class BuildCandidate:
     duplicate_score: float
     risk: RiskLevel
     estimated_cost_usd: float = 0.0
+    expected_benefit_usd: float | None = None
+    execution_overhead_usd: float = 0.0
+    confidence: float = 0.5
     action: ActionClass = ActionClass.BUILD
     metadata: dict[str, Any] = field(default_factory=dict)
+
+    @property
+    def probability_weighted_net_value_usd(self) -> float | None:
+        if self.expected_benefit_usd is None:
+            return None
+        return (
+            self.expected_benefit_usd * min(max(self.confidence, 0.0), 1.0)
+            - self.estimated_cost_usd
+            - self.execution_overhead_usd
+        )
 
 
 @dataclass(frozen=True, slots=True)
