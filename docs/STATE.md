@@ -10,13 +10,15 @@ COMPLETED:
 - Added confidence-weighted net-value calculation for measurable opportunities.
 - Added bounded resource envelopes for autonomous time/cost allocation.
 - Added append-only JSONL audit events for repeated stage checks.
-- Added agent manifest and OpenClaw sandbox reference config.
+- Added stage-by-stage run controller that re-evaluates policy before later execution boundaries.
+- Added exact-action approval envelopes with request fingerprints so stale approvals cannot authorize changed operations.
+- Hardened OpenClaw sandbox reference: session isolation, read-only root, no shell egress, dropped Linux capabilities.
 - Added external-pattern adoption notes for the 0xCristal and Daniro examples.
-- Added CI workflow and 14 locally validated unit tests.
+- Added CI workflow and 20 locally validated unit tests.
 
 NEXT:
-1. Add OpenClaw job adapter and stage-by-stage re-evaluation hooks.
-2. Add Telegram approval envelope compatible with PIX approval semantics.
+1. Add OpenClaw job/session adapter using Gateway-managed sandboxed workers.
+2. Add Telegram transport for the approval envelope.
 3. Add GitHub PR/check evidence collector.
 4. Add model-router adapter with usage/cost accounting.
 5. Add CLOSE/LEARN post-run evaluator and compact project-memory update.
