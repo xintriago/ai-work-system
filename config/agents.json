@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "control_plane": "PIX",
+  "runtime": "OpenClaw",
+  "agents": [
+    {"id": "chief-of-staff", "mode": "orchestrator", "workspace": "read-only-by-default"},
+    {"id": "scout", "mode": "research", "workspace": "read-only"},
+    {"id": "scope", "mode": "policy", "workspace": "none"},
+    {"id": "dupe", "mode": "policy", "workspace": "read-only"},
+    {"id": "builder", "mode": "code", "workspace": "assigned-repo-rw"},
+    {"id": "crash", "mode": "verification", "workspace": "assigned-repo-read-only"},
+    {"id": "risk", "mode": "review", "workspace": "read-only"},
+    {"id": "money", "mode": "budget", "workspace": "none"},
+    {"id": "ship", "mode": "release", "workspace": "no-production-write-without-owner-approval"},
+    {"id": "learn", "mode": "memory", "workspace": "append-only-audit"}
+  ]
+}

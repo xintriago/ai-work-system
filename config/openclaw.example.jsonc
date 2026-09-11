@@ -1,0 +1,49 @@
+{
+  // Reference only. Keep secrets out of git.
+  // Prefer Gateway-managed sandboxed sessions for workers; do not assume CLI exec has identical sandbox semantics.
+  "agents": {
+    "defaults": {
+      "sandbox": {
+        "mode": "all",
+        "scope": "session",
+        "backend": "docker",
+        "workspaceAccess": "ro",
+        "docker": {
+          "image": "openclaw-sandbox:bookworm-slim",
+          "readOnlyRoot": true,
+          "tmpfs": ["/tmp", "/var/tmp", "/run"],
+          "network": "none",
+          "capDrop": ["ALL"]
+        }
+      }
+    },
+    "entries": {
+      "builder": {
+        "sandbox": {
+          "mode": "all",
+          "scope": "session",
+          "workspaceAccess": "rw",
+          "docker": {
+            "network": "none",
+            "readOnlyRoot": true,
+            "capDrop": ["ALL"]
+          }
+        }
+      },
+      "risk": {
+        "sandbox": {
+          "mode": "all",
+          "scope": "session",
+          "workspaceAccess": "ro"
+        }
+      },
+      "ship": {
+        "sandbox": {
+          "mode": "all",
+          "scope": "session",
+          "workspaceAccess": "ro"
+        }
+      }
+    }
+  }
+}
