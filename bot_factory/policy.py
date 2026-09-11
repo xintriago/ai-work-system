@@ -19,6 +19,7 @@ class PolicySettings:
     max_complexity_points: int = 40
     duplicate_threshold: float = 0.82
     minimum_balance_usd: float = 10.0
+    minimum_net_value_usd: float = 0.0
     approval_actions: frozenset[ActionClass] = frozenset(
         {
             ActionClass.MERGE,
@@ -69,6 +70,32 @@ class PolicyEngine:
             )
         else:
             gates.append(GateResult("dupe", Decision.PASS, "no duplicate threshold hit"))
+
+        net_value = candidate.probability_weighted_net_value_usd
+        if net_value is None:
+            gates.append(
+                GateResult(
+                    "value",
+                    Decision.PASS,
+                    "benefit is not monetized; value gate recorded but not used as a blocker",
+                )
+            )
+        elif net_value <= self.settings.minimum_net_value_usd:
+            gates.append(
+                GateResult(
+                    "value",
+                    Decision.REJECT,
+                    f"probability-weighted net value ${net_value:.2f} does not exceed ${self.settings.minimum_net_value_usd:.2f}",
+                )
+            )
+        else:
+            gates.append(
+                GateResult(
+                    "value",
+                    Decision.PASS,
+                    f"probability-weighted net value ${net_value:.2f} remains positive after cost and overhead",
+                )
+            )
 
         if not state.last_deploy_healthy:
             gates.append(
