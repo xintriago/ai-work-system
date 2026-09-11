@@ -1,0 +1,36 @@
+{
+  // Reference only. Keep secrets out of git.
+  "agents": {
+    "defaults": {
+      "sandbox": {
+        "mode": "all",
+        "scope": "session",
+        "backend": "docker",
+        "workspaceAccess": "ro"
+      }
+    },
+    "entries": {
+      "builder": {
+        "sandbox": {
+          "mode": "all",
+          "scope": "session",
+          "workspaceAccess": "rw"
+        }
+      },
+      "risk": {
+        "sandbox": {
+          "mode": "all",
+          "scope": "session",
+          "workspaceAccess": "ro"
+        }
+      },
+      "ship": {
+        "sandbox": {
+          "mode": "all",
+          "scope": "session",
+          "workspaceAccess": "ro"
+        }
+      }
+    }
+  }
+}
