@@ -35,6 +35,30 @@ class PolicyEngineTests(unittest.TestCase):
         result = self.engine.evaluate(self.candidate(duplicate_score=0.95), self.state)
         self.assertEqual(result.final_decision, Decision.REJECT)
 
+    def test_negative_probability_weighted_value_rejected(self):
+        result = self.engine.evaluate(
+            self.candidate(
+                expected_benefit_usd=10,
+                confidence=0.5,
+                estimated_cost_usd=6,
+                execution_overhead_usd=1,
+            ),
+            self.state,
+        )
+        self.assertEqual(result.final_decision, Decision.REJECT)
+
+    def test_positive_probability_weighted_value_passes(self):
+        result = self.engine.evaluate(
+            self.candidate(
+                expected_benefit_usd=40,
+                confidence=0.75,
+                estimated_cost_usd=6,
+                execution_overhead_usd=2,
+            ),
+            self.state,
+        )
+        self.assertEqual(result.final_decision, Decision.PASS)
+
     def test_high_risk_vetoed(self):
         result = self.engine.evaluate(self.candidate(risk=RiskLevel.HIGH), self.state)
         self.assertEqual(result.final_decision, Decision.REJECT)
