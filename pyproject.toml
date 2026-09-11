@@ -1,0 +1,8 @@
+[project]
+name = "xavi-bot-factory"
+version = "0.1.0"
+description = "Deterministic execution gates for the PIX + OpenClaw Bot Factory"
+requires-python = ">=3.12"
+
+[tool.unittest]
+start-directory = "tests"
