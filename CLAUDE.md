@@ -32,3 +32,11 @@ Build the execution layer for Xavier's autonomous agent workforce without creati
 6. Update state.
 7. Commit/push only when the user's request clearly authorizes publishing repo changes.
 8. Never merge/deploy without separate explicit approval.
+
+
+## Mandatory Engineering Standard
+For all software architecture, coding, debugging, refactoring, integration, deployment, and review work in this repository, read and obey `ENGINEERING_STANDARD.md` before making changes.
+
+Do not call work finished or production-ready until the applicable Reivax Engineering Council gates are executed and recorded in `VERIFICATION_REPORT.md`. Preserve failures and uncertainty; never convert NOT_VERIFIED into PASS by reasoning alone.
+
+When implementing, act as builder. After implementation, perform a fresh adversarial council review and deterministic verification. Hard blockers cannot be waived by majority opinion.
