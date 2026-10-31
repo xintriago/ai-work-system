@@ -23,6 +23,16 @@ Owns job intake, candidate scoring, gate evaluation, task decomposition, bounded
 8. **SHIP** can prepare a release but cannot merge/deploy without owner approval.
 9. **LEARN** records outcome, cost, defects, and reusable lessons.
 
+## Repeated-process promotion
+
+Bot Factory may evaluate a candidate process, but PIX remains the authority for approval and activation:
+
+`Repeated Process -> SOP -> Skill Candidate -> Tested Skill -> Optional Automation`
+
+The deterministic gate requires distinct occurrence evidence, deduplicates against an existing capability, requires an SOP before skill candidacy, and requires executed scenario evidence plus independent review before `TESTED_SKILL`. `OPTIONAL_AUTOMATION` always returns `needs_approval`; the gate cannot activate it.
+
+Change-control validation and humanizer scope use the same rule: model output can recommend or rewrite within an allowed boundary, but cannot grant execution authority. Humanizer policy is default-deny outside marketing, sales, Zen Paws and approved external communications.
+
 ## Non-negotiable invariants
 
 - LLMs may recommend; deterministic gates decide whether execution is allowed.
@@ -41,3 +51,4 @@ Bot Factory does not hard-code a provider. PIX/OpenClaw should route economy wor
 `NVIDIA NIM -> OpenRouter :free -> local Ollama -> paid escalation`
 
 Routing must never weaken tool permissions or approval rules.
+

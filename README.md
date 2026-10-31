@@ -29,3 +29,14 @@ python -m unittest discover -s tests -v
 5. Enforce budget floors and prohibit silent top-ups.
 6. Keep deploy/merge permission separate from build permission.
 7. Produce an auditable decision trail for every candidate.
+
+## Capability promotion gates
+
+`bot_factory.capability_gates` adds three deterministic, advisory boundaries:
+
+- repeated work can progress only through `Observed -> SOP -> Skill Candidate -> Tested Skill -> Optional Automation`;
+- change records must contain impact, test, rollback and verification, with independent review for medium/high risk;
+- humanized tone is allowed only for marketing, sales, Zen Paws and approved external communication, and is denied for QA, compliance, contracts, code and technical results.
+
+These gates classify readiness. They do not install skills, activate automation, merge, deploy, send, publish, pay or modify permissions. Consequential actions still pass through PIX's existing exact-action approval controls.
+
