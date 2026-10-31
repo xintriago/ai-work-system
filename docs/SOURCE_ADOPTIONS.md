@@ -32,3 +32,23 @@ Adopted patterns:
 Adaptation for Bot Factory:
 - `SCOUT -> ESTIMATE -> VALUE -> ALLOCATE -> BUILD -> VERIFY -> RISK -> SHIP -> CLOSE -> LEARN`
 - No trading strategy or live-trading behavior is imported.
+
+## 2026-10-31 — Marcelo skill-pack comparison
+
+Adopted patterns:
+- Discover and document a repeated process before optimizing or automating it.
+- Combine SOP evidence, test evidence and an independent review before promoting a reusable skill.
+- Require impact, test, rollback and verification in a change record.
+- Use vendor/risk analysis as advice, never procurement authorization.
+- Limit tone humanization to approved external content.
+
+Adaptation:
+- Reused PIX/Bot Factory policy and approval primitives instead of importing another framework.
+- Added deterministic readiness gates only; no connector, scheduler, worker activation, purchase, send, merge or deploy path.
+- PIX remains the control plane and source of approval authority.
+
+Rejected:
+- A second agent runtime, memory system or general-purpose skill factory.
+- Automatic activation of skills or sensitive automations.
+- Humanizing QA, compliance, contracts, code or technical evidence.
+
